@@ -1,0 +1,5 @@
+{
+  "cards": [
+    { "id": 1, "title": "Example Card", "description": "Here's a description of a card." }
+  ]
+}
