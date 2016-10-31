@@ -1,7 +1,7 @@
 module.exports = {
   context: __dirname + '/src',
   devtool: 'source-map',
-  entry: './main',
+  entry: './main.jsx',
   module: {
     loaders: [
       {
