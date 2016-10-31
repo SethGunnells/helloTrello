@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class List extends React.Component {
+class List extends Component {
   render() {
     const cardElements = this.props.cards.map((card) =>
       <div className="card" key={card.id}>{card.title}</div>
