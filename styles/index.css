@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: hsl(200, 10%, 20%);
+  color: hsl(0, 0%, 100%);
+  font-family: sans-serif;
+  margin: 0;
+}
+
+.list {
+  background-color: #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(50, 50, 50, 0.3);
+  color: #333;
+  display: inline-block;
+  margin: 16px;
+  overflow: hidden;
+  width: 320px;
+  vertical-align: top;
+}
+
+.list:last-child {
+  margin-left: 0;
+}
+
+.list-title {
+  margin: 8px 8px 0;
+  font-size: 18px;
+}
+
+.card {
+  background-color: #f6f6f6;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(50, 50, 50, 0.3);
+  margin: 16px;
+  min-height: 96px;
+  padding: 8px;
+}
