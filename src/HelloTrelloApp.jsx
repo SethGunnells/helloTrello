@@ -19,12 +19,16 @@ class HelloTrelloApp extends Component {
   render() {
     var { lists } = this.props;
     return (<div>
-      {lists.map(list => <List cards={list.cards} key={list.id} />)}
+      {lists.map(list =>
+        <List cards={list.cards} title={list.title} key={list.id} />)
+      }
     </div>);
   }
 }
 
-const mapStateToProps = (state) => { return { lists: getAllLists(state) }; };
+const mapStateToProps = (state) => ({
+  lists: getAllLists(state)
+});
 
 HelloTrelloApp = connect(mapStateToProps, {
   fetchLists
