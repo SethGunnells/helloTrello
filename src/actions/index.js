@@ -15,11 +15,16 @@ List.define({
 /**
  * Relies on Redux thunk middleware
  */
-export const fetchLists = () => (dispatch) =>
-  fetch(FETCH_URL).then(response => response.json())
-  .then((response) => {
-    dispatch({
-      type: RECEIVE_LISTS,
-      response: normalize(response, arrayOf(List))
-    });
+export const fetchLists = () => (dispatch) => {
+  dispatch({
+    type: FETCH_LISTS
   });
+
+  return fetch(FETCH_URL).then(response => response.json())
+    .then((response) => {
+      dispatch({
+        type: RECEIVE_LISTS,
+        response: normalize(response, arrayOf(List))
+      });
+    });
+};

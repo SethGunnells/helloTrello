@@ -12,8 +12,7 @@ class HelloTrelloApp extends Component {
   }
 
   fetchData() {
-    var { fetchLists } = this.props;
-    fetchLists();
+    this.props.fetchLists();
   }
 
   render() {
