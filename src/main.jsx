@@ -1,3 +1,4 @@
+// The root file of the app
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -15,5 +16,6 @@ const render = () => {
   );
 }
 
+// This is where the action really gets started!
 render();
 store.subscribe(render);

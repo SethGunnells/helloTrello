@@ -1,10 +1,13 @@
 import { normalize, Schema, arrayOf } from 'normalizr';
 
+// Constants
 const FETCH_URL = '/lists?_embed=cards';
 
+// Action types
 export const FETCH_LISTS = 'FETCH_LISTS';
 export const RECEIVE_LISTS = 'RECEIVE_LISTS';
 
+// Normalizr schemas
 const List = new Schema('lists');
 const Card = new Schema('cards');
 
