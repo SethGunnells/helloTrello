@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import List from './List.jsx';
 import { fetchLists } from './actions';
+import { getAllLists } from './reducers';
 
 import '../styles/index.css';
 
@@ -23,7 +24,7 @@ class HelloTrelloApp extends Component {
   }
 }
 
-const mapStateToProps = (state) => { return { lists: state }; };
+const mapStateToProps = (state) => { return { lists: getAllLists(state) }; };
 
 HelloTrelloApp = connect(mapStateToProps, {
   fetchLists
