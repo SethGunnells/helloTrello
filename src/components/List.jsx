@@ -1,7 +1,7 @@
 // List component. Contains cards.
 import React from 'react';
 
-const List = ({cards, title}) => {
+const List = ({cards, title, onClick}) => {
   const cardElements = cards.map((card) =>
     <div className="card" key={card.id}>{card.title}</div>
   );
@@ -10,7 +10,7 @@ const List = ({cards, title}) => {
     <div className="list">
       <h2 className="list-title">{title}</h2>
       {cardElements}
-      <button className="add-card-button">
+      <button className="add-card-button" onClick={onClick}>
         Add a Card
       </button>
     </div>

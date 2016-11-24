@@ -7,6 +7,8 @@ const FETCH_URL = '/lists?_embed=cards';
 export const FETCH_LISTS = 'FETCH_LISTS';
 export const RECEIVE_LISTS = 'RECEIVE_LISTS';
 
+export const CREATE_NEW_CARD = 'CREATE_NEW_CARD';
+
 // Normalizr schemas
 const List = new Schema('lists');
 const Card = new Schema('cards');
@@ -30,4 +32,11 @@ export const fetchLists = () => (dispatch) => {
         response: normalize(response, arrayOf(List))
       });
     });
+};
+
+export const createNewCard = newCardData => {
+  return {
+    type: CREATE_NEW_CARD,
+    card: newCardData
+  };
 };
