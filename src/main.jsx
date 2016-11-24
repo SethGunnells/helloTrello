@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import HelloTrelloApp from './HelloTrelloApp.jsx';
+import HelloTrelloApp from './controllers/HelloTrelloApp.jsx';
 import { configureStore } from './configureStore.js';
 
 const store = configureStore();

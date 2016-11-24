@@ -1,11 +1,11 @@
 // Controller for the overall application
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import List from './List.jsx';
-import { fetchLists } from './actions';
-import { getAllLists } from './reducers';
+import List from '../components/List.jsx';
+import { fetchLists } from '../actions';
+import { getAllLists } from '../reducers';
 
-import '../styles/index.css';
+import '../../styles/index.css';
 
 class HelloTrelloApp extends Component {
   componentWillMount() {
