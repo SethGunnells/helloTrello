@@ -10,6 +10,9 @@ const List = ({cards, title}) => {
     <div className="list">
       <h2 className="list-title">{title}</h2>
       {cardElements}
+      <button className="add-card-button">
+        Add a Card
+      </button>
     </div>
   );
 };
