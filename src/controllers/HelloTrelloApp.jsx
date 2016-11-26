@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import List from '../components/List.jsx';
-import { fetchLists, createNewCard } from '../actions';
+import { fetchLists, createNewCard, editCard } from '../actions';
 import { getAllLists } from '../reducers';
 
 import '../../styles/index.css';
@@ -31,7 +31,7 @@ class HelloTrelloApp extends Component {
         lists.map(list => {
           let newCard = this.createNewCard.bind(this, list.id);
           return <List cards={list.cards} title={list.title} key={list.id}
-                       onClick={newCard} />
+                       onAddNewCard={newCard} onCardSave={this.props.editCard} />
         })
       }
     </div>);
@@ -43,7 +43,7 @@ const mapStateToProps = (state) => ({
 });
 
 HelloTrelloApp = connect(mapStateToProps, {
-  fetchLists, createNewCard
+  fetchLists, createNewCard, editCard
 })(HelloTrelloApp);
 
 export default HelloTrelloApp;
