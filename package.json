@@ -28,6 +28,7 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
+    "draft-js": "^0.9.1",
     "immutable": "^3.8.1",
     "normalizr": "^2.2.1",
     "react": "^15.1.0",

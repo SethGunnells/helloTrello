@@ -1,9 +1,12 @@
 // List component. Contains cards.
 import React from 'react';
+import Card from './Card.jsx';
 
 const List = ({cards, title, onClick}) => {
   const cardElements = cards.map((card) =>
-    <div className="card" key={card.id}>{card.title}</div>
+    <div className="card" key={card.id}>
+      <Card title={card.title} />
+    </div>
   );
 
   return (
