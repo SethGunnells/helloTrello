@@ -1,4 +1,7 @@
 import { normalize, Schema, arrayOf } from 'normalizr';
+import { fromJS, Map } from 'immutable';
+
+import { Card, CardList } from '../models';
 
 // Constants
 const FETCH_URL = '/lists?_embed=cards';
@@ -10,11 +13,11 @@ export const RECEIVE_LISTS = 'RECEIVE_LISTS';
 export const CREATE_NEW_CARD = 'CREATE_NEW_CARD';
 
 // Normalizr schemas
-const List = new Schema('lists');
-const Card = new Schema('cards');
+const ListSchema = new Schema('lists');
+const CardSchema = new Schema('cards');
 
-List.define({
-  cards: arrayOf(Card)
+ListSchema.define({
+  cards: arrayOf(CardSchema)
 });
 
 /**
@@ -27,17 +30,29 @@ export const fetchLists = () => (dispatch) => {
 
   return fetch(FETCH_URL).then(response => response.json())
     .then((response) => {
+      var data = fromJS(normalize(response, arrayOf(ListSchema)).entities);
+
+      var lists = data.get('lists').reduce(
+        (_lists, list, key) => _lists.set(parseInt(key), new CardList(list)),
+        Map()
+      );
+      var cards = data.get('cards').reduce(
+        (_cards, card, key) => _cards.set(parseInt(key), new Card(card)),
+        Map()
+      );
+
+      data = data.set('lists', lists).set('cards', cards);
+
       dispatch({
         type: RECEIVE_LISTS,
-        response: normalize(response, arrayOf(List))
+        entities: data
       });
     });
 };
 
 export const createNewCard = newCardData => {
-  newCardData.id = -1;
   return {
     type: CREATE_NEW_CARD,
-    card: newCardData
+    card: new Card(newCardData)
   };
 };

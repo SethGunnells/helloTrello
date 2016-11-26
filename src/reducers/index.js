@@ -10,6 +10,7 @@ export const rootReducer = combineReducers({
   lists,
   cards
 });
+
 /**
  * SELECTORS
  */
@@ -18,7 +19,8 @@ export const getAllLists = (state) => {
   var lists = fromLists.getAllLists(state.lists);
   return lists
     .map(list => {
-      list.cards = fromCards.getCardsByListId(state.cards, list.id);
+      var cards = fromCards.getCardsByListId(state.cards, list.id);
+      list = list.set('cards', cards);
       return list;
     });
 };

@@ -1,17 +1,14 @@
+import { Map } from 'immutable';
+
+import { Card } from '../models';
 import { RECEIVE_LISTS, CREATE_NEW_CARD } from '../actions';
 
-export default function cards(state = {}, action) {
+export default function cards(state = Map(), action) {
   switch (action.type) {
     case RECEIVE_LISTS:
-      return {
-        ...state,
-        ...action.response.entities.cards
-      };
+      return action.entities.get('cards');
     case CREATE_NEW_CARD:
-      return {
-        ...state,
-        [action.card.id]: action.card
-      };
+      return state.set(action.card.id, action.card);
     default:
       return state;
   }
@@ -21,8 +18,7 @@ export default function cards(state = {}, action) {
  * SELECTORS
  */
 export function getCardsByListId(state, listId) {
-  var keys = Object.keys(state);
-  return keys
-    .filter(id => state[id].listId === listId)
-    .map(id => ({...state[id]}));
+  return state
+    .filter(card => card.listId === listId)
+    .toList();
 }
