@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import List from '../components/List.jsx';
-import { fetchLists, createNewCard, editCard } from '../actions';
+import { fetchLists, editCard } from '../actions';
 import { getAllLists } from '../reducers';
 
 import '../../styles/index.css';
@@ -16,23 +16,14 @@ class HelloTrelloApp extends Component {
     this.props.fetchLists();
   }
 
-  createNewCard(listId) {
-    this.props.createNewCard({
-      title: 'A New Card',
-      desciption: 'Blah blah blah blah blah',
-      listId
-    });
-  }
-
   render() {
     var { lists } = this.props;
     return (<div>
       {
-        lists.map(list => {
-          let newCard = this.createNewCard.bind(this, list.id);
-          return <List cards={list.cards} title={list.title} key={list.id}
-                       onAddNewCard={newCard} onCardSave={this.props.editCard} />
-        })
+        lists.map(list =>
+          <List cards={list.cards} title={list.title} key={list.id}
+                       onCardSave={this.props.editCard} />
+        )
       }
     </div>);
   }
@@ -43,7 +34,7 @@ const mapStateToProps = (state) => ({
 });
 
 HelloTrelloApp = connect(mapStateToProps, {
-  fetchLists, createNewCard, editCard
+  fetchLists, editCard
 })(HelloTrelloApp);
 
 export default HelloTrelloApp;

@@ -2,7 +2,7 @@
 import React from 'react';
 import Card from './Card.jsx';
 
-const List = ({cards, title, onAddNewCard, onCardSave}) => {
+const List = ({cards, title, onCardSave}) => {
   const cardElements = cards.map((card) =>
     <div className="card" key={card.id}>
       <Card card={card} onSave={onCardSave} />
@@ -13,9 +13,6 @@ const List = ({cards, title, onAddNewCard, onCardSave}) => {
     <div className="list">
       <h2 className="list-title">{title}</h2>
       {cardElements}
-      <button className="add-card-button" onClick={onAddNewCard}>
-        Add a Card
-      </button>
     </div>
   );
 };

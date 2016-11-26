@@ -62,6 +62,6 @@ export const editCard = (id, titleText) => {
   return {
     type: EDIT_CARD,
     id,
-    titleText: titleText + ' extra string'
+    titleText
   };
 };
