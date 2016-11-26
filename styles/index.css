@@ -28,7 +28,7 @@ body {
 
 .list-title {
   font-size: 18px;
-  margin: 0;
+  margin: 0 0 0 -4px;
 }
 
 .card {

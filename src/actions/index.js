@@ -35,6 +35,7 @@ export const fetchLists = () => (dispatch) => {
 };
 
 export const createNewCard = newCardData => {
+  newCardData.id = -1;
   return {
     type: CREATE_NEW_CARD,
     card: newCardData

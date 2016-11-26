@@ -1,18 +1,15 @@
 // Aggregrate file for reducers. Contains the root reducer.
-import { FETCH_LISTS, RECEIVE_LISTS } from '../actions';
+import { combineReducers } from 'redux';
+import lists from './lists';
+import cards from './cards';
 
 // The root reducer, the overall logical driver for the app.
 // Currently does not need to be broken down into more reducers,
 // but probably will be in the future.
-export const rootReducer = (state={}, action) => {
-  switch (action.type) {
-    case RECEIVE_LISTS:
-      return action.response.entities;
-    default:
-      return state;
-  }
-}
-
+export const rootReducer = combineReducers({
+  lists,
+  cards
+});
 /**
  * SELECTORS
  */

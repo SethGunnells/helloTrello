@@ -27,11 +27,12 @@ class HelloTrelloApp extends Component {
   render() {
     var { lists } = this.props;
     return (<div>
-      {lists.map(list => {
-        let newCard = this.createNewCard.bind(this, list.id);
-        return <List cards={list.cards} title={list.title} key={list.id}
-              onClick={newCard} />
-      })
+      {
+        lists.map(list => {
+          let newCard = this.createNewCard.bind(this, list.id);
+          return <List cards={list.cards} title={list.title} key={list.id}
+                       onClick={newCard} />
+        })
       }
     </div>);
   }
