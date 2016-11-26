@@ -16,3 +16,13 @@ export default function cards(state = {}, action) {
       return state;
   }
 }
+
+/**
+ * SELECTORS
+ */
+export function getCardsByListId(state, listId) {
+  var keys = Object.keys(state);
+  return keys
+    .filter(id => state[id].listId === listId)
+    .map(id => ({...state[id]}));
+}

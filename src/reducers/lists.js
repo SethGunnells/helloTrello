@@ -18,3 +18,13 @@ export default function lists(state = {}, action) {
       return state;
   }
 }
+
+/**
+ * SELECTORS
+ */
+export function getAllLists(state) {
+  if (state === undefined) return [];
+  
+  var keys = Object.keys(state);
+  return keys.map(id => ({...state[id]}));
+}
