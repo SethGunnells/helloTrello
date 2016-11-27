@@ -1,5 +1,7 @@
 import React from 'react';
-import { Editor, EditorState, ContentState, EditorChangeType } from 'draft-js';
+import {
+  Editor, EditorState, ContentState, EditorChangeType, SelectionState
+} from 'draft-js';
 import { connect } from 'react-redux';
 import { getCardUnderEdit } from '../reducers';
 import { saveCard } from '../actions';
@@ -8,10 +10,17 @@ class CardTitleEditor extends React.Component {
   constructor(props) {
     super(props);
 
+    var editor = EditorState.createWithContent(
+      ContentState.createFromText(this.props.card.title)
+    );
+    editor = EditorState.moveSelectionToEnd(editor);
+    var selection = editor.getSelection().merge({
+      anchorOffset: 0
+    });
+    editor = EditorState.acceptSelection(editor, selection);
+
     this.state = {
-      editor: EditorState.createWithContent(
-        ContentState.createFromText(this.props.card.title)
-      ),
+      editor,
       card: this.props.card
     };
   }
