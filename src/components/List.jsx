@@ -2,12 +2,12 @@
 import React from 'react';
 import Card from './Card.jsx';
 
-const List = ({cards, title, onCardSave}) => {
-  const cardElements = cards.map((card) =>
-    <div className="card" key={card.id}>
-      <Card card={card} onSave={onCardSave} />
-    </div>
-  );
+const List = ({cards, title, onCardClick, cardUnderEdit}) => {
+  const cardElements = cards.map((card) => {
+    const click = onCardClick.bind(this, card.id);
+    const underEdit = cardUnderEdit && cardUnderEdit.id === card.id;
+    return <Card key={card.id} card={card} onClick={click} underEdit={underEdit} />
+  });
 
   return (
     <div className="list">

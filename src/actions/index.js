@@ -2,16 +2,12 @@ import { normalize, Schema, arrayOf } from 'normalizr';
 import { fromJS, Map } from 'immutable';
 
 import { Card, CardList } from '../models';
+import * as types from './types';
+
+export {types};
 
 // Constants
 const FETCH_URL = '/lists?_embed=cards';
-
-// Action types
-export const FETCH_LISTS = 'FETCH_LISTS';
-export const RECEIVE_LISTS = 'RECEIVE_LISTS';
-
-export const CREATE_NEW_CARD = 'CREATE_NEW_CARD';
-export const EDIT_CARD = 'EDIT_CARD';
 
 // Normalizr schemas
 const ListSchema = new Schema('lists');
@@ -26,7 +22,7 @@ ListSchema.define({
  */
 export const fetchLists = () => (dispatch) => {
   dispatch({
-    type: FETCH_LISTS
+    type: types.FETCH_LISTS
   });
 
   return fetch(FETCH_URL).then(response => response.json())
@@ -45,7 +41,7 @@ export const fetchLists = () => (dispatch) => {
       data = data.set('lists', lists).set('cards', cards);
 
       dispatch({
-        type: RECEIVE_LISTS,
+        type: types.RECEIVE_LISTS,
         entities: data
       });
     });
@@ -53,15 +49,21 @@ export const fetchLists = () => (dispatch) => {
 
 export const createNewCard = newCardData => {
   return {
-    type: CREATE_NEW_CARD,
+    type: types.CREATE_NEW_CARD,
     card: new Card(newCardData)
   };
 };
 
-export const editCard = (id, titleText) => {
+export const editCard = (cardId) => {
   return {
-    type: EDIT_CARD,
-    id,
-    titleText
+    type: types.EDIT_CARD,
+    cardId
+  };
+};
+
+export const saveCard = (card) => {
+  return {
+    type: types.SAVE_CARD,
+    card: card
   };
 };

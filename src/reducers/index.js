@@ -2,13 +2,15 @@
 import { combineReducers } from 'redux';
 import lists, * as fromLists from './lists';
 import cards, * as fromCards from './cards';
+import cardUnderEdit from './cardUnderEdit';
 
 // The root reducer, the overall logical driver for the app.
 // Currently does not need to be broken down into more reducers,
 // but probably will be in the future.
 export const rootReducer = combineReducers({
   lists,
-  cards
+  cards,
+  cardUnderEdit
 });
 
 /**
@@ -24,3 +26,7 @@ export const getAllLists = (state) => {
       return list;
     });
 };
+
+export function getCardUnderEdit(state) {
+  return fromCards.getCardById(state.cards, state.cardUnderEdit);
+}
