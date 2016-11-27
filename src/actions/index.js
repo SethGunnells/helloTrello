@@ -85,3 +85,9 @@ export const saveCard = (editedCard) => (dispatch) => {
       });
     });
 };
+
+export const cancelCardEdit = () => {
+  return {
+    type: types.CANCEL_CARD_EDIT
+  };
+};

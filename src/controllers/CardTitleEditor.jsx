@@ -4,7 +4,7 @@ import {
 } from 'draft-js';
 import { connect } from 'react-redux';
 import { getCardUnderEdit } from '../reducers';
-import { saveCard } from '../actions';
+import { saveCard, cancelCardEdit } from '../actions';
 
 class CardTitleEditor extends React.Component {
   constructor(props) {
@@ -33,8 +33,10 @@ class CardTitleEditor extends React.Component {
   }
 
   onBlur = () => {
-    var {saveCard} = this.props;
-    saveCard(this.state.card);
+    var {saveCard, cancelCardEdit} = this.props;
+    
+    if (this.props.card.equals(this.state.card)) cancelCardEdit();
+    else saveCard(this.state.card);
   }
 
   componentDidMount() {
@@ -52,7 +54,7 @@ const mapStateToProps = (state) => ({
 });
 
 CardTitleEditor = connect(mapStateToProps, {
-  saveCard
+  saveCard, cancelCardEdit
 })(CardTitleEditor);
 
 export default CardTitleEditor;
