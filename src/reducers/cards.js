@@ -8,6 +8,7 @@ export default function cards(state = Map(), action) {
     case types.RECEIVE_LISTS:
       return action.entities.get('cards');
     case types.CREATE_NEW_CARD:
+    case types.SAVE_CARD_SUCCESS:
       return state.set(action.card.id, action.card);
     default:
       return state;

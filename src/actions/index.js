@@ -8,6 +8,7 @@ export {types};
 
 // Constants
 const FETCH_URL = '/lists?_embed=cards';
+const CARDS_URL = '/cards/';
 
 // Normalizr schemas
 const ListSchema = new Schema('lists');
@@ -61,9 +62,26 @@ export const editCard = (cardId) => {
   };
 };
 
-export const saveCard = (card) => {
-  return {
+export const saveCard = (editedCard) => (dispatch) => {
+  dispatch({
     type: types.SAVE_CARD,
-    card: card
+    card: editedCard
+  });
+
+  var opts = {
+    method: 'PUT',
+    body: JSON.stringify(editedCard.toJS()),
+    headers: {
+      'Content-Type': 'application/json'
+    }
   };
+
+  return fetch(CARDS_URL + editedCard.id, opts)
+    .then(response => response.json())
+    .then(card => {
+      dispatch({
+        type: types.SAVE_CARD_SUCCESS,
+        card: new Card(card)
+      });
+    });
 };
