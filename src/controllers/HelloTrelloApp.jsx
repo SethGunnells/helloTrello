@@ -21,8 +21,8 @@ class HelloTrelloApp extends Component {
     return (<div>
       {
         lists.map(list =>
-          <List cards={list.cards} title={list.title} key={list.id}
-                onCardClick={this.props.editCard} cardUnderEdit={cardUnderEdit} />
+          <List list={list} key={list.id} onCardClick={this.props.editCard}
+                cardUnderEdit={cardUnderEdit} />
         )
       }
     </div>);
