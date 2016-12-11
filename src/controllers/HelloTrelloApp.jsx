@@ -1,9 +1,10 @@
 // Controller for the overall application
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import List from '../components/List.jsx';
+
+import ListController from './ListController.jsx';
 import { fetchLists, editCard } from '../actions';
-import { getAllLists, getCardUnderEdit } from '../reducers';
+import { getAllListIds } from '../selectors';
 
 import '../../styles/index.css';
 
@@ -17,21 +18,15 @@ class HelloTrelloApp extends Component {
   }
 
   render() {
-    var { lists, cardUnderEdit } = this.props;
+    var { listIds } = this.props;
     return (<div>
-      {
-        lists.map(list =>
-          <List list={list} key={list.id} onCardClick={this.props.editCard}
-                cardUnderEdit={cardUnderEdit} />
-        )
-      }
+      { listIds.map(id => <ListController id={id} key={id} />) }
     </div>);
   }
 }
 
 const mapStateToProps = (state) => ({
-  lists: getAllLists(state),
-  cardUnderEdit: getCardUnderEdit(state)
+  listIds: getAllListIds(state)
 });
 
 HelloTrelloApp = connect(mapStateToProps, {

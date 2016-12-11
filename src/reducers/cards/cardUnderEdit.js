@@ -1,4 +1,4 @@
-import { types } from '../actions';
+import { types } from '../../actions';
 
 export default function cardUnderEdit(state = null, action) {
   switch (action.type) {
