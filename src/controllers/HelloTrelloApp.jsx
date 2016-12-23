@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import ListController from './ListController.jsx';
-import { fetchLists, editCard } from '../actions';
+import { fetchLists } from '../actions';
 import { getAllListIds } from '../selectors';
 
 import '../../styles/index.css';
@@ -30,7 +30,7 @@ const mapStateToProps = (state) => ({
 });
 
 HelloTrelloApp = connect(mapStateToProps, {
-  fetchLists, editCard
+  fetchLists
 })(HelloTrelloApp);
 
 export default HelloTrelloApp;
