@@ -3,7 +3,7 @@ import {
   Editor, EditorState, ContentState, EditorChangeType, SelectionState
 } from 'draft-js';
 import { connect } from 'react-redux';
-import { getCardUnderEdit } from '../reducers';
+import { getCardUnderEdit } from '../selectors';
 import { saveCard, cancelCardEdit } from '../actions';
 
 class CardTitleEditor extends React.Component {
@@ -34,7 +34,7 @@ class CardTitleEditor extends React.Component {
 
   onBlur = () => {
     var {saveCard, cancelCardEdit} = this.props;
-    
+
     if (this.props.card.equals(this.state.card)) cancelCardEdit();
     else saveCard(this.state.card);
   }
