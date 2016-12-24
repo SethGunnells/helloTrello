@@ -9,7 +9,7 @@ export default function cards(state = Map(), action) {
       let newState = action.entities.get('cards');
       return state.merge(newState);
 
-    case types.CREATE_NEW_CARD:
+    case types.CREATE_NEW_CARD_SUCCESS:
     case types.SAVE_CARD_SUCCESS:
       return state.set(action.card.id, action.card);
 

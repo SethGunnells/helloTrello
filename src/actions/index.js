@@ -48,11 +48,31 @@ export const fetchLists = () => (dispatch) => {
     });
 };
 
-export const createNewCard = newCardData => {
-  return {
+export const createNewCard = (newCard) => (dispatch) => {
+  dispatch({
     type: types.CREATE_NEW_CARD,
-    card: new Card(newCardData)
+    card: newCard
+  });
+
+  let cardData = newCard.toJS();
+  delete cardData.id;
+
+  var opts = {
+    method: 'POST',
+    body: JSON.stringify(cardData),
+    headers: {
+      'Content-Type': 'application/json'
+    }
   };
+
+  return fetch(CARDS_URL, opts)
+    .then(response => response.json())
+    .then(card => {
+      dispatch({
+        type: types.CREATE_NEW_CARD_SUCCESS,
+        card: new Card(card)
+      });
+    });
 };
 
 export const editCard = (cardId) => {
