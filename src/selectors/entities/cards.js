@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-import { getCardIdsForList } from './lists';
+import { getCardIdsForList } from '../index';
 
 const unpack = state => state.getIn(['entities', 'cards']);
 
